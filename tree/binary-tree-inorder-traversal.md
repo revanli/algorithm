@@ -1,5 +1,5 @@
 ## 题目地址
-https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
 ## 题目描述
 ```
@@ -14,7 +14,7 @@ Input: [1,null,2,3]
     /
    3
 
-Output: [1,2,3]
+Output: [1,3,2]
 Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
 
@@ -44,51 +44,6 @@ function preorderTraversal(root) {
   }
   let left = root.left ? ret.concat(preorderTraversal(root.left)) : []
   let right = root.right ? ret.concat(preorderTraversal(root.right)) : []
-  return left.concat([root.val]).concat(right)
-}
-```
-
-- 非递归解法
-不用递归的话，就少不了需要 for/while 线性遍历，终止条件是所有的都遍历过，没有节点可以访问了。考虑用栈的形式，开始把整个树放入栈，开始遍历出栈整棵树，遍历开始，子节点不为空入栈，然后出栈，重复，直到栈为空为止
-
-第一步：基本结构
-```js
-function preorderTraversal(root) {
-  const stack = [root]
-  let t = stack.pop()
-
-  while(t) {
-    if (t.right) {
-      stack.push(t.right)
-    }
-    if (t.left) {
-      stack.push(t.left)
-    }
-    t = stack.pop()
-  }
-}
-```
-
-第二步：合并结果
-```js
-function preorderTraversal(root) {
-  if (!root) return []
-
-  let ret = []
-  const stack = [root]
-  let t = stack.pop()
-
-  while(t) {
-    ret.push(t.val)
-    if (t.right) {
-      stack.push(t.right)
-    }
-    if (t.left) {
-      stack.push(t.left)
-    }
-    t = stack.pop()
-  }
-
-  return ret
+  return [root.val].concat(left).concat(right)
 }
 ```
