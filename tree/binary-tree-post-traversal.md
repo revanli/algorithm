@@ -1,5 +1,5 @@
 ## 题目地址
-https://leetcode.com/problems/binary-tree-inorder-traversal/description/
+https://leetcode.com/problems/binary-tree-postorder-traversal/description/
 
 ## 题目描述
 ```
@@ -14,7 +14,7 @@ Input: [1,null,2,3]
     /
    3
 
-Output: [1,3,2]
+Output: [3,2,1]
 Follow up: Recursive solution is trivial, could you do it iteratively?
 ```
 
@@ -25,25 +25,26 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 
 第一步遍历：
 ```js
-function inorderTraversal(root) {
+function postorderTraversal(root) {
   // 终止
   if (!root) {
     return
   }
-  inorderTraversal(root.left)
-  inorderTraversal(root.right)
+  postorderTraversal(root.left)
+  postorderTraversal(root.right)
 }
 ```
 
 第二步：把值合并起来，数组操作
 ```js
-function inorderTraversal(root) {
+function postorderTraversal(root) {
   // 终止
   if (!root) {
     return []
   }
-  let left = root.left ? inorderTraversal(root.left) : []
-  let right = root.right ? inorderTraversal(root.right) : []
-  return [root.val].concat(left).concat(right)
+  let left = root.left ? postorderTraversal(root.left) : []
+  let right = root.right ? postorderTraversal(root.right) : []
+  return left.concat([root.val]).concat(right)
 }
 ```
+

@@ -42,8 +42,8 @@ function preorderTraversal(root) {
   if (!root) {
     return []
   }
-  let left = root.left ? ret.concat(preorderTraversal(root.left)) : []
-  let right = root.right ? ret.concat(preorderTraversal(root.right)) : []
+  let left = root.left ? preorderTraversal(root.left) : []
+  let right = root.right ? preorderTraversal(root.right) : []
   return left.concat([root.val]).concat(right)
 }
 ```
