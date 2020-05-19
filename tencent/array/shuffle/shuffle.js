@@ -4,7 +4,6 @@
 // 链接：https://bost.ocks.org/mike/shuffle/
 // 链接：https://github.com/ccforward/cc/issues/44
 
-
 /**
  * 第一种思路：
  * 1、从原数据组中产生一个[0, n]之间的随机数
@@ -32,4 +31,29 @@ const shuffleArray = (array, len) => {
   return result
 }
 
+/**
+ * 第二种思路：不用辅助空间，将打乱后的元素放在原数组的最后，
+ * 未打乱的放在原数组的最前。
+ * 每次从未处理的数组中随机取一个元素，然后把该元素放到数组的尾部，即数组的尾部放的就是已经处理过的元素，这是一种原地打乱的算法，每个元素随机概率也相等
+ * 时间复杂度：O(n), 空间复杂度 O(1)
+ */
+const shuffleArray2 = (array, len) => {
+  var temp, i
+  
+  // while there remain elements to shuffle
+  while(len) {
+
+    // Pick a remaining element...
+    i = Math.floor(Math.random() * len--)
+
+    // And swap it with the current element
+    temp = array[len]
+    array[len] = array[i]
+    array[i] = temp
+  }
+
+  return array
+}
+
 exports.shuffleArray = shuffleArray
+exports.shuffleArray2 = shuffleArray2

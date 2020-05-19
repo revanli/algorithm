@@ -6,7 +6,8 @@ for (let i = 0; i < 52; i++) {
   cards.push(i)
 }
 
-let result = shuffle.shuffleArray(cards, 52)
+// let result = shuffle.shuffleArray(cards, 52)
+let result2 = shuffle.shuffleArray2(cards, 52)
 
 console.log(cards)
-console.log(result, result.length)
+console.log(result2, result2.length)
